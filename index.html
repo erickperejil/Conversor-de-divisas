@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversor</title>
+
+    <!-- Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"], // Define Inter como sans
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/02ade1bbb9.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .inter {
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 300;
+        font-style: normal;
+      }
+      .inter2 {
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: med;
+      }
+      #vistaanimacion {
+        position: absolute;
+        top: 0;
+        width: 66%;
+        height: 100vh;
+        transition: left 2s ease; /* La animación de desplazamiento será de 2 segundos */
+      }
+
+      .vistaanimacion {
+        left: -1500px; /* Comienza fuera de la pantalla */
+      }
+
+      .vista-activa {
+        left: 0; /* Mueve la vista a la posición visible */
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      style="display: flex"
+      class="vista h-screen text-base font-sans"
+    >
+      <div id="vista1" style="display: flex"class="w-8/12 h-full flex-col pl-32 py-16 justify-center relative"
+      >
+        <h6
+          class="text-xl inter text-[rgb(47,47,47)] mb-8"
+          id="conversion-text"
+        >
+          1 Dólar estadounidense es igual a
+        </h6>
+        <h1
+          class="inter2 text-black text-5xl w-3/5 leading-tight mb-12 h-32"
+          id="conversion-amount"
+        >
+          24.5 Lempiras Hondureños
+        </h1>
+        <i
+          onclick="cambiarVista()"
+          class="absolute right-1/3 fa-solid fa-share-nodes text-5xl top-[32%]"
+          style="color: #2ba1f5"
+        ></i>
+
+        <div class="flex mb-6 w-3/5 rounded-lg hover:border-blue-400 border">
+          <input
+            id="cantidad"
+            oninput="updateData(this)"
+            class="border text-xl border-gray-400 hover:border-blue-400 p-2 w-3/5 inter focus:outline-none rounded-l-lg"
+            type="number"
+            placeholder="0"
+          />
+
+          <select
+            id="origen"
+            class="border text-xl border-gray-400 p-2 w-2/5 inter rounded-r-lg hover:border-blue-400 focus:outline-none"
+          >
+            <option value="DólarEstadounidense">Dólares</option>
+            <option value="LempiraHondureño">Lempiras</option>
+            <option value="Euro">Euros</option>
+          </select>
+        </div>
+        <div class="flex mb-6 w-3/5 rounded-lg hover:border-blue-400 border">
+          <input
+            id="cantidad2"
+            oninput="updateData(this)"
+            class="border text-xl border-gray-400 hover:border-blue-400 p-2 w-3/5 inter focus:outline-none rounded-l-lg placeholder:text-blue-600"
+            type="number"
+            placeholder="0"
+            readonly
+          />
+
+          <select
+            id="destino"
+            class="border text-xl border-gray-400 hover:border-blue-400 p-2 w-2/5 inter rounded-r-lg focus:outline-none"
+          >
+            <option value="LempiraHondureño">Lempiras</option>
+            <option value="DólarEstadounidense">Dólares</option>
+            <option value="Euro">Euros</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="vista2" style="display: none" class="w-8/12 h-full flex-col pl-32 py-16 justify-center relative">
+      <div class="h-[25rem] w-[40rem] relative">
+        <img
+          class="object-contain w-full h-full"
+          id="imagen-arbol"
+          alt="Imagen del árbol"
+        />
+      </div>
+      <i
+      onclick="cambiarVista()"
+      class="absolute right-1/3 fa-solid fa-share-nodes text-5xl top-[32%]"
+      style="color: #2ba1f5"
+    ></i>
+      </div>
+
+
+      <div class="w-4/12 h-full flex flex-col items-start py-9 justify-center">
+        <div
+          class=""
+          id="lottie-animation"
+          style="width: 400px; height: 400px"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      id="vistaanimacion"
+      class="vistaanimacion bg-white absolute top-0 w-8/12 vista justify-center items-center h-screen text-base font-sans"
+    >
+      <div
+        class="m-auto mt-[10%]"
+        id="lottie-animation2"
+        style="width: 400px; height: 400px"
+      ></div>
+    </div>
+
+
+
+    <script src="assets/js/controller.js"></script>
+  </body>
+</html>
